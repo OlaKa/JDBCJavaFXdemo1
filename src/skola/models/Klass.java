@@ -1,6 +1,7 @@
 package skola.models;
 
 public class Klass {
+
     private String kod;
     private String namn;
     private int årskurs;
