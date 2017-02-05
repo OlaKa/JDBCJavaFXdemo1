@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="Skola@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="Skola">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="sys"/>
+    <table id="7" parent="2" name="Avdelning"/>
+    <table id="8" parent="2" name="BetygVarde"/>
+    <table id="9" parent="2" name="Elev"/>
+    <table id="10" parent="2" name="Klass"/>
+    <table id="11" parent="2" name="KlassKurs"/>
+    <table id="12" parent="2" name="Kurs"/>
+    <table id="13" parent="2" name="KursBetyg"/>
+    <table id="14" parent="2" name="KursLokal"/>
+    <table id="15" parent="2" name="Larare"/>
+    <table id="16" parent="2" name="Lokal"/>
+    <table id="17" parent="2" name="Undervisar"/>
+    <routine id="18" parent="2" name="GetAllElever">
+      <RoutineKind>procedure</RoutineKind>
+    </routine>
+    <routine id="19" parent="2" name="GetEleverByKlasskod">
+      <RoutineKind>procedure</RoutineKind>
+    </routine>
+    <column id="20" parent="7" name="Avdelningsnummer">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="21" parent="7" name="Namn">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="22" parent="7" name="IX_Avdelning_Namn">
+      <ColNames>Namn</ColNames>
+    </index>
+    <key id="23" parent="7" name="PRIMARY">
+      <ColNames>Avdelningsnummer</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="24" parent="8" name="Betyg">
+      <Position>1</Position>
+      <DataType>char(2)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="8" name="Varde">
+      <Position>2</Position>
+      <DataType>tinyint(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="26" parent="8" name="PRIMARY">
+      <ColNames>Betyg</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="27" parent="9" name="Personnummer">
+      <Position>1</Position>
+      <DataType>char(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="28" parent="9" name="Fornamn">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="29" parent="9" name="Efternamn">
+      <Position>3</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="30" parent="9" name="Epost">
+      <Position>4</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="31" parent="9" name="Telefon">
+      <Position>5</Position>
+      <DataType>char(12)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="9" name="Klasskod">
+      <Position>6</Position>
+      <DataType>char(5)|0</DataType>
+    </column>
+    <index id="33" parent="9" name="IX_Elev_Efternamn">
+      <ColNames>Efternamn</ColNames>
+    </index>
+    <index id="34" parent="9" name="Klasskod">
+      <ColNames>Klasskod</ColNames>
+    </index>
+    <key id="35" parent="9" name="PRIMARY">
+      <ColNames>Personnummer</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="36" parent="9" name="elev_ibfk_1">
+      <ColNames>Klasskod</ColNames>
+      <RefSchemaName>skola</RefSchemaName>
+      <RefTableName>Klass</RefTableName>
+      <RefColNames>Kod</RefColNames>
+    </foreign-key>
+    <column id="37" parent="10" name="Kod">
+      <Position>1</Position>
+      <DataType>char(5)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="38" parent="10" name="Namn">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="39" parent="10" name="Arskurs">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="40" parent="10" name="IX_Klass_Namn">
+      <ColNames>Namn</ColNames>
+    </index>
+    <key id="41" parent="10" name="PRIMARY">
+      <ColNames>Kod</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="42" parent="11" name="Klasskod">
+      <Position>1</Position>
+      <DataType>char(5)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="43" parent="11" name="Kurskod">
+      <Position>2</Position>
+      <DataType>char(5)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="44" parent="11" name="Kurskod">
+      <ColNames>Kurskod</ColNames>
+    </index>
+    <key id="45" parent="11" name="PRIMARY">
+      <ColNames>Klasskod
+Kurskod</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="46" parent="11" name="klasskurs_ibfk_1">
+      <ColNames>Klasskod</ColNames>
+      <RefSchemaName>skola</RefSchemaName>
+      <RefTableName>Klass</RefTableName>
+      <RefColNames>Kod</RefColNames>
+    </foreign-key>
+    <foreign-key id="47" parent="11" name="klasskurs_ibfk_2">
+      <ColNames>Kurskod</ColNames>
+      <RefSchemaName>skola</RefSchemaName>
+      <RefTableName>Kurs</RefTableName>
+      <RefColNames>Kod</RefColNames>
+    </foreign-key>
+    <column id="48" parent="12" name="Kod">
+      <Position>1</Position>
+      <DataType>char(5)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="49" parent="12" name="Namn">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="50" parent="12" name="Startdatum">
+      <Position>3</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="51" parent="12" name="Poang">
+      <Position>4</Position>
+      <DataType>tinyint(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="52" parent="12" name="IX_Kurs_Namn">
+      <ColNames>Namn</ColNames>
+    </index>
+    <key id="53" parent="12" name="PRIMARY">
+      <ColNames>Kod</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="54" parent="13" name="Personnummer">
+      <Position>1</Position>
+      <DataType>char(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="55" parent="13" name="Kurskod">
+      <Position>2</Position>
+      <DataType>char(5)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="56" parent="13" name="Betyg">
+      <Position>3</Position>
+      <DataType>char(2)|0</DataType>
+    </column>
+    <index id="57" parent="13" name="Betyg">
+      <ColNames>Betyg</ColNames>
+    </index>
+    <index id="58" parent="13" name="Kurskod">
+      <ColNames>Kurskod</ColNames>
+    </index>
+    <key id="59" parent="13" name="PRIMARY">
+      <ColNames>Personnummer
+Kurskod</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="60" parent="13" name="kursbetyg_ibfk_1">
+      <ColNames>Personnummer</ColNames>
+      <RefSchemaName>skola</RefSchemaName>
+      <RefTableName>Elev</RefTableName>
+      <RefColNames>Personnummer</RefColNames>
+    </foreign-key>
+    <foreign-key id="61" parent="13" name="kursbetyg_ibfk_2">
+      <ColNames>Kurskod</ColNames>
+      <RefSchemaName>skola</RefSchemaName>
+      <RefTableName>Kurs</RefTableName>
+      <RefColNames>Kod</RefColNames>
+    </foreign-key>
+    <foreign-key id="62" parent="13" name="kursbetyg_ibfk_3">
+      <ColNames>Betyg</ColNames>
+      <RefSchemaName>skola</RefSchemaName>
+      <RefTableName>BetygVarde</RefTableName>
+      <RefColNames>Betyg</RefColNames>
+    </foreign-key>
+    <column id="63" parent="14" name="Kurskod">
+      <Position>1</Position>
+      <DataType>char(5)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="64" parent="14" name="Lokalnummer">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="65" parent="14" name="Datum">
+      <Position>3</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="66" parent="14" name="Tid">
+      <Position>4</Position>
+      <DataType>time|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="67" parent="14" name="Lokalnummer">
+      <ColNames>Lokalnummer</ColNames>
+    </index>
+    <key id="68" parent="14" name="PRIMARY">
+      <ColNames>Kurskod
+Lokalnummer
+Datum
+Tid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="69" parent="14" name="kurslokal_ibfk_1">
+      <ColNames>Kurskod</ColNames>
+      <RefSchemaName>skola</RefSchemaName>
+      <RefTableName>Kurs</RefTableName>
+      <RefColNames>Kod</RefColNames>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <foreign-key id="70" parent="14" name="kurslokal_ibfk_2">
+      <ColNames>Lokalnummer</ColNames>
+      <RefSchemaName>skola</RefSchemaName>
+      <RefTableName>Lokal</RefTableName>
+      <RefColNames>Lokalnummer</RefColNames>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <column id="71" parent="15" name="Anstallningsnummer">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="72" parent="15" name="Fornamn">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="73" parent="15" name="Efternamn">
+      <Position>3</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="74" parent="15" name="Epost">
+      <Position>4</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="75" parent="15" name="Telefon">
+      <Position>5</Position>
+      <DataType>char(12)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="76" parent="15" name="Avdelningsnummer">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="77" parent="15" name="Avdelningsnummer">
+      <ColNames>Avdelningsnummer</ColNames>
+    </index>
+    <index id="78" parent="15" name="IX_Larare_Efternamn">
+      <ColNames>Efternamn</ColNames>
+    </index>
+    <key id="79" parent="15" name="PRIMARY">
+      <ColNames>Anstallningsnummer</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="80" parent="15" name="larare_ibfk_1">
+      <ColNames>Avdelningsnummer</ColNames>
+      <RefSchemaName>skola</RefSchemaName>
+      <RefTableName>Avdelning</RefTableName>
+      <RefColNames>Avdelningsnummer</RefColNames>
+    </foreign-key>
+    <column id="81" parent="16" name="Lokalnummer">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="82" parent="16" name="Namn">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="83" parent="16" name="AntalPlatser">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="84" parent="16" name="IX_Lokal_Namn">
+      <ColNames>Namn</ColNames>
+    </index>
+    <key id="85" parent="16" name="PRIMARY">
+      <ColNames>Lokalnummer</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="86" parent="17" name="Kurskod">
+      <Position>1</Position>
+      <DataType>char(5)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="87" parent="17" name="Anstallningsnummer">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="88" parent="17" name="Anstallningsnummer">
+      <ColNames>Anstallningsnummer</ColNames>
+    </index>
+    <key id="89" parent="17" name="PRIMARY">
+      <ColNames>Kurskod
+Anstallningsnummer</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="90" parent="17" name="undervisar_ibfk_1">
+      <ColNames>Kurskod</ColNames>
+      <RefSchemaName>skola</RefSchemaName>
+      <RefTableName>Kurs</RefTableName>
+      <RefColNames>Kod</RefColNames>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <foreign-key id="91" parent="17" name="undervisar_ibfk_2">
+      <ColNames>Anstallningsnummer</ColNames>
+      <RefSchemaName>skola</RefSchemaName>
+      <RefTableName>Larare</RefTableName>
+      <RefColNames>Anstallningsnummer</RefColNames>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <argument id="92" parent="19" name="Personnummer">
+      <DataType>char(10)|0</DataType>
+    </argument>
+    <argument id="93" parent="19" name="Klassnamn">
+      <ArgumentDirection>O</ArgumentDirection>
+      <DataType>varchar(50)|0</DataType>
+    </argument>
+  </database-model>
+</dataSource>
